@@ -1,0 +1,90 @@
+<!-- Author : Ayush Kumar - aykumar@cs.stonybrook.edu -->
+
+
+<!doctype html>
+<html>
+<head>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+<style>
+    svg rect {
+        fill: orange;
+    }
+
+    svg text {
+        fill:white;
+        font: 10px sans-serif;
+        text-anchor: end;
+    }
+</style>
+<body>
+<!--    <svg class="chart" width="420" height="120">
+
+
+      <rect x = "10" y = "10" width="50" height="19"></rect>
+      <text x="47" y="19.5" dy=".35em">5</text>
+
+      <rect x = "10" y = "30" width="100" height="19"></rect>
+      <text x="97" y="39.5" dy=".35em">10</text> -->
+
+      <!--  <g transform="translate(0,0)">
+            <rect width="50" height="19"></rect>
+            <text x="47" y="9.5" dy=".35em">5</text>
+        </g>
+        /*You may have noticed the group element <g> that we have introduced to hold our bars.
+          Each group element here holds the corresponding bar and its text together.*/
+        <g transform="translate(0,20)">
+            <rect width="100" height="19"></rect>
+            <text x="97" y="9.5" dy=".35em">10</text>
+        </g>
+        <g transform="translate(0,40)">
+            <rect width="120" height="19"></rect>
+            <text x="117" y="9.5" dy=".35em">12</text>
+        </g>
+
+
+    </svg>-->
+
+    <script>
+            var data = [5, 10, 12,15,5,9,6];
+            var colors =  ['#9999cc','#c2e699','blue','red','#006837','orange','#cccccc'];
+            var width = 200,
+            scaleFactor = 10,
+            barHeight = 20;
+
+            var graph = d3.select("body") // Select document Body
+                      .append("svg") // Append a SVG element
+                      .attr("width", width) // Assign width to the SVG
+                      .attr("height", barHeight * data.length); // height of SVG to accommodate all the bars
+
+            var bar = graph.selectAll("g") // we want to place each of our bars inside corresponding <g> elements. So here, we create our group elements.
+                      .data(data)
+                      .enter() // Placeholder for binded data to appear
+                      .append("g")// appended group inplace of placeholder created
+                      .attr("transform", function(d, i) { //Let's play with transform also
+                            return "translate(0," + i * barHeight + ")"; //Each of our group elements needs to be positioned one below the other because we want to build a horizontal bar chart.
+                                                                        //So our translation formula will be
+                      })
+                      ;
+
+        bar.append("rect") //our group elements ready, we will add the <rect> element for each bar.
+           .attr("width", function(d) {
+                    return d * scaleFactor; // Scaling because values are smaller
+           })
+           .attr("height", barHeight - 1);
+/*           .style("fill",function(d,i)
+         {
+           return colors[i];
+         }); // Can anyone tell me WHY -1 ??
+*/
+        bar.append("text") // group element also appending text
+           .attr("x", function(d) { return (d*scaleFactor)-5; }) //assigning x for text to appear
+           .attr("y", barHeight / 2) // similarly assigning y cordinate
+           .attr("dy", ".35em") // "dy" offset  is used to align the text vertically. Text elements do not support padding or margin
+           .text(function(d) { return d; });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!-- Author : Ayush Kumar - aykumar@cs.stonybrook.edu -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--  <script src="../d3.min.js"></script> Use D3 library from CDN -->
+     <script src="https://d3js.org/d3.v4.min.js"></script>
+     <link rel="stylesheet" type="text/css" href="css/style.css">
+
+
+</head>
+<body>
+      <p>First paragraph</p>
+      <p>Second paragraph</p>
+<!--
+      <h3 id="p1">First Heading</h3>
+      <h3 id="p2">Second Heading</h3> -->
+
+
+        <p class="myclass ">First paragraph</p>
+         <p>Second paragraph</p><!-- -->
+         <p class="myclass ">Third paragraph</p>
+
+<script>
+     d3.select("p").style("color", "green");
+     //d3.selectAll("p").style("color", "red");
+    d3.select("#p2").style("color", "steelblue");
+    d3.select(".myclass ");//.style('color','green');
+
+</script>
+</body>
+
+</html>

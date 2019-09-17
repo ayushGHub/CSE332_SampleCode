@@ -1,0 +1,92 @@
+<!-- Author : Ayush Kumar - aykumar@cs.stonybrook.edu -->
+
+
+<!doctype html>
+<html>
+<head>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+<style>
+    svg rect {
+        fill: orange;
+    }
+
+    svg text {
+        fill:white;
+        font: 10px sans-serif;
+        text-anchor: end;
+    }
+</style>
+<body>
+<!--    <svg class="chart" width="420" height="120">
+
+
+      <rect x = "10" y = "10" width="50" height="19"></rect>
+      <text x="47" y="19.5" dy=".35em">5</text>
+
+      <rect x = "10" y = "30" width="100" height="19"></rect>
+      <text x="97" y="39.5" dy=".35em">10</text> -->
+
+      <!--  <g transform="translate(0,0)">
+            <rect width="50" height="19"></rect>
+            <text x="47" y="9.5" dy=".35em">5</text>
+        </g>
+        /*You may have noticed the group element <g> that we have introduced to hold our bars.
+          Each group element here holds the corresponding bar and its text together.*/
+        <g transform="translate(0,20)">
+            <rect width="100" height="19"></rect>
+            <text x="97" y="9.5" dy=".35em">10</text>
+        </g>
+        <g transform="translate(0,40)">
+            <rect width="120" height="19"></rect>
+            <text x="117" y="9.5" dy=".35em">12</text>
+        </g>
+
+
+    </svg>-->
+
+    <script>
+                var data = [100, 400, 300, 900, 850, 1000]
+
+                var width = 500,
+                barHeight = 20,
+                margin = 1;
+/*
+                var scale = d3.scaleLinear()
+                        .domain([100, 1000])
+                        .range([50, 500]);
+  */
+                var scale = d3.scaleLinear()
+                         .domain([d3.min(data), d3.max(data)]) // Finding the Domain
+                         .range([50, 200]); // Rescaling the Range that is new output
+
+                var svg = d3.select("body") // Similar
+                          .append("svg")
+                          .attr("width", width)
+                          .attr("height", barHeight * data.length);
+
+                var g = svg.selectAll("g")
+                          .data(data)
+                          .enter()
+                          .append("g")
+                          .attr("transform", function (d, i) {
+                              return "translate(0," + i * barHeight + ")";
+                          });
+
+                g.append("rect")
+                .attr("width", function (d) {
+                   return scale(d);
+                })
+                .attr("height", barHeight - margin)
+
+                g.append("text")
+                .attr("x", function (d) { return (scale(d)-10); })
+                .attr("y", barHeight / 2)
+                .attr("dy", ".35em")
+                .text(function (d) { return d; });
+
+    </script>
+
+</body>
+
+</html>

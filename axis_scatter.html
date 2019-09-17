@@ -1,0 +1,59 @@
+<!-- Author : Ayush Kumar - aykumar@cs.stonybrook.edu -->
+
+<!doctype html>
+<html>
+<head>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+<style>
+    svg rect {
+        fill: orange;
+    }
+
+    svg text {
+        fill:white;
+        font: 10px sans-serif;
+        text-anchor: end;
+    }
+</style>
+<body>
+
+
+    <script>
+                var width = 400, height = 400;
+
+                var data = [10, 15, 20, 25, 30];
+                var svg = d3.select("body")
+                    .append("svg")
+                    .attr("width", width)
+                    .attr("height", height);
+
+                var xscale = d3.scaleLinear()
+                    .domain([0, d3.max(data)])
+                    .range([0, width - 100]); //specifies the range [0,300]. So value 10 will be map to 0 and value 300 woill be map to 30.
+
+                var yscale = d3.scaleLinear()
+                        .domain([0, d3.max(data)])
+                        .range([height/2, 0]);//specifies the range [0,300]. So value 30 will be map to 200 and value 0 woill be map to 10.
+
+                var x_axis = d3.axisBottom()
+                        .scale(xscale);// d3.axisBottom to create our x-axis and provide it with the scale we defined earlier.
+
+                var y_axis = d3.axisLeft()
+                        .scale(yscale);// d3.axisLeft() to create our y-axis and provide it with the scale we defined earlier.
+
+                    svg.append("g")
+                       .attr("transform", "translate(50, 10)")
+                       .call(y_axis); //append a group element and call the y-axis function. So, all the components of the y-axis will be grouped under the group element. We then apply a translate transformation to align the y-axis to 50px right of the origin and 10px to the bottom of the origin
+
+                var xAxisTranslate = height/2 + 10;
+
+                    svg.append("g")
+                            .attr("transform", "translate(50, " + xAxisTranslate  +")")
+                            .call(x_axis)
+
+    </script>
+
+</body>
+
+</html>

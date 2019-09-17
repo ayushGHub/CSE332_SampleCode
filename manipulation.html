@@ -1,0 +1,41 @@
+<!-- Author : Ayush Kumar - aykumar@cs.stonybrook.edu -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--  <script src="../d3.min.js"></script> Use D3 library from CDN -->
+     <script src="https://d3js.org/d3.v4.min.js"></script>
+     <link rel="stylesheet" type="text/css" href="css/style.css"></link>
+
+     <style>
+    /* .error {
+            color: red
+        }
+       .myclass{
+           color:'red'
+       }*/
+   </style>
+</head>
+<body>
+    <div>
+    <p>First paragraph</p>
+    <p>Second paragraph</p>  <!-- -->
+       <p></p>
+       <p2>Error: This is dummy error.</p2>
+    </div>
+    <p></p>
+    <script>
+      //  d3.selectAll("p").text("This is paragraph.")
+          //d3.select("p").text("This is paragraph.")
+
+          // d3.select("body").append("p").text("Third paragraph.");
+//            d3.select("body").append("p");
+             d3.select("div").insert("p").text("Fifth paragraph.");
+              //d3.select("p").remove();
+              //d3.select("p").attr("class","error");
+            //  d3.select("p2").style("color", "red")
+
+    </script>
+</body>
+</html>
